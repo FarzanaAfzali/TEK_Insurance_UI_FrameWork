@@ -36,7 +36,9 @@ public class Base {
 
         if (browser_type.equalsIgnoreCase("chrome")){
             ChromeOptions option = new ChromeOptions();
-            option.addArguments("__headless");      //chrome headless mode used in Linux Machines.
+            option.addArguments("--headless"); //chrome headless mode used in Linux Machines.
+            //option.addArguments("__no_sandbox");
+            //option.addArguments("__disable_dev_shm_usage");
             driver = new ChromeDriver(option);
         }else if (browser_type.equalsIgnoreCase("edge")){
             driver = new EdgeDriver();
