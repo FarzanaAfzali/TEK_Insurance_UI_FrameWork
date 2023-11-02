@@ -8,7 +8,6 @@ Feature: Create Account
 
   @US_3
   Scenario Outline: Create Account, sign up and validate email address
-    #* def AutoEmail = Java.type('DataGenerators.DataGenerator')
     When Navigating to home page click on Create Primary Account button
     And Type in email address "<email>"
     And Choose the prefix as "<title>"

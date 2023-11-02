@@ -4,8 +4,10 @@ import Tek_UI_BDD_FrameWork.Pages.LoginPage_Locators;
 import Tek_UI_BDD_FrameWork.Pages.UserProfile_Locators;
 import Tek_UI_BDD_FrameWork.Utility.SeleniumUtility;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import io.cucumber.java.it.Ma;
 import io.cucumber.java.lv.Tad;
 import org.junit.Assert;
@@ -23,23 +25,33 @@ public class UserProfile_TS extends SeleniumUtility {
         click_element(UserProfile_Locators.USER_PROFILE_BUTTON);
     }
 
-    // validate user's name, username and userType
-    // still need more think if we can get separate field_name and use_info lists and make an assertion.
-    @And("Validate User Information")
-    public void check_userInfo(DataTable dataTable){
-        List<List<String>> dataAsList = dataTable.asLists();
-        List<String> expectedData = dataAsList.get(1);
-        List<String> fields = dataAsList.get(0);
+    // validate Status
+    @And("Validate User {string}")
+    public void status_userInfo(String expectedData){
+        getString_assert(UserProfile_Locators.STATUS_PATH, expectedData, "Status: ");
+    }
+    // validate User Type
+    @And("The {string}")
+    public void userType_userInfo(String expectedData){
+        getString_assert(UserProfile_Locators.USER_TYPE, expectedData, "User Type: ");
+    }
 
-        List<WebElement> elementList = get_elements_list(UserProfile_Locators.USER_INFO_PATH);
-        String actualValues = elementList.get(0).getText();
+    // Validate name
+    @And("Name as {string}")
+    public void name_userInfo(String expectedData){
+        getString_assert(UserProfile_Locators.NAME_PATH, expectedData, "Name: ");
+    }
 
-        for(int index = 0; index < expectedData.size(); index++) {
-            String section_name = fields.get(index);
-            String value = expectedData.get(index);
-           if (actualValues.contains(value)) System.out.println(section_name + ": " + value);
-           else System.out.println(section_name + ": " + value);
-       }
+    //validate Username
+    @And("Username as {string}")
+    public void userName_userInfo(String expectedData){
+        getString_assert(UserProfile_Locators.USER_NAME_PATH, expectedData, "Username: ");
+    }
+
+    //validate Authorities
+    @And("Authorities as {string}")
+    public void authority_userInfo(String expectedData){
+        getString_assert(UserProfile_Locators.AUTHORITY_PATH, expectedData, "Authorities: ");
     }
 
     // click logout
@@ -55,5 +67,26 @@ public class UserProfile_TS extends SeleniumUtility {
             System.out.println("Logout successfully");
         else System.out.println("Logout not successful");
 
+    }
+    //Theme Button enable
+    @When("Theme button should be enabled")
+    public void theme_button(){
+        get_element(UserProfile_Locators.LIGHT_THEME_BUTTON).isEnabled();
+    }
+    // to dark mode
+    @And("click on Theme button and it should witch to {string}")
+    public void to_darkTheme(String expectedTheme){
+        click_element(UserProfile_Locators.LIGHT_THEME_BUTTON);
+        String actualTheme = get_element(UserProfile_Locators.DARK_THEME_BUTTON).getCssValue("color-scheme");
+        Assert.assertEquals("Light to Dark Theme", expectedTheme, actualTheme);
+    }
+
+    // to light mode
+    @Then("click on Theme button again and change it to {string}")
+    public void to_lightTheme(String expectedTheme){
+       // click_element(UserProfile_Locators.LIGHT_THEME_BUTTON);
+        click_element(UserProfile_Locators.DARK_THEME_BUTTON);
+        String actualTheme = get_element(UserProfile_Locators.LIGHT_THEME_BUTTON).getCssValue("color-scheme");
+        Assert.assertEquals("Dark to Light Theme", expectedTheme, actualTheme);
     }
 }

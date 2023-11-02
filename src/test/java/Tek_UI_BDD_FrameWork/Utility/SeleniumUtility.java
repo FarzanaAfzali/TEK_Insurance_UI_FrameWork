@@ -78,7 +78,8 @@ public class SeleniumUtility extends Base {
     // get string and compare it with param
     public void getString_assert(By locator, String expectedValue, String message){
         String actualValue = get_element_text(locator);
-        System.out.println(actualValue);
+        //System.out.println(actualValue);
+        //System.out.println(expectedValue);
         Assert.assertEquals(message
                             ,expectedValue
                             ,actualValue);
