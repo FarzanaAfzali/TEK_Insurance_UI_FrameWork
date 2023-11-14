@@ -21,11 +21,11 @@ Feature: Create Account
     When Validate user navigate to "Sign up your Account" page
     And Validate email address as "<email>"
     Examples:
-      | email                      | title | name    | lName  | gender | maritalStatus | empStatus | DOB        |
-      | afzalifarzana297@gmail.com | Mrs.  | farzana | Afzali | FEMALE | MARRIED       | SDET      | 04/22/1998 |
+      | email | title | name    | lName  | gender | maritalStatus | empStatus | DOB        |
+      | email | Mrs.  | farzana | Afzali | FEMALE | MARRIED       | SDET      | 04/22/1998 |
 
-    @US_4
-    Scenario Outline: Creating account with existed Email address and error message
+  @US_4
+  Scenario Outline: Creating account with existed Email address and error message
       When Navigating to home page click on Create Primary Account button
       And Type in email address "<email>"
       And Choose the prefix as "<title>"

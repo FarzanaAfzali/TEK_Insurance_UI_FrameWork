@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
       features = "src/test/resources/Test_Features",
-        glue = "",
+        glue = "Tek_UI_BDD_FrameWork.TestSteps",
         tags = "",
         plugin = {
               "html:target/html_report/report.html",

@@ -28,7 +28,7 @@ public class CreateAccount_TS extends SeleniumUtility {
     //send Email
     @And("Type in email address {string}")
     public void type_Email(String email){
-        send_text(CreateAccountHolder_Locators.EMAIL_PATH, email);
+        send_text(CreateAccountHolder_Locators.EMAIL_PATH, data_Generator());
     }
 
     // send title

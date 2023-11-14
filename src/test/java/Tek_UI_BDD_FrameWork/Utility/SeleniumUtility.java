@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Random;
 
 public class SeleniumUtility extends Base {
 
@@ -25,6 +26,12 @@ public class SeleniumUtility extends Base {
 
     public WebElement get_element(By locator){
         return explicitly_Wait().until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    //random email Generator
+    public String data_Generator(){
+        int x = (int) (Math.random() * 21);
+        return "Afzalifarzana." + x + "@gmail.com";
     }
 
     public List<WebElement> get_elements_list(By locator){
