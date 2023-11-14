@@ -26,9 +26,11 @@ public class CreateAccount_TS extends SeleniumUtility {
     // filling the form
 
     //send Email
+    String email = data_Generator();
     @And("Type in email address {string}")
-    public void type_Email(String email){
-        send_text(CreateAccountHolder_Locators.EMAIL_PATH, data_Generator());
+    public void type_Email(String expectedEmail){
+        expectedEmail = email;
+        send_text(CreateAccountHolder_Locators.EMAIL_PATH, email);
     }
 
     // send title
@@ -89,6 +91,7 @@ public class CreateAccount_TS extends SeleniumUtility {
     // Validate email as expected
     @And("Validate email address as {string}")
     public void validate_emailAddress(String expectedEmail){
+        expectedEmail = email;
         webElement_list_check(SignUpAccount_Locators.SIGN_UP_ACCOUNT_EMAIL_TITLE, expectedEmail);
     }
 
