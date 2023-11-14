@@ -91,7 +91,6 @@ public class CreateAccount_TS extends SeleniumUtility {
     // Validate email as expected
     @And("Validate email address as {string}")
     public void validate_emailAddress(String expectedEmail){
-        expectedEmail = email;
         webElement_list_check(SignUpAccount_Locators.SIGN_UP_ACCOUNT_EMAIL_TITLE, expectedEmail);
     }
 
